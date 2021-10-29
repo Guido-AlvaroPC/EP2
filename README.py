@@ -48,3 +48,4 @@ def destribui_pecas(lista_pecas,num_participantes):
         pessas_jogador_3=[]
         pessas_jogador_1=[]
         pessas_jogador_2=[]
+    for k 
