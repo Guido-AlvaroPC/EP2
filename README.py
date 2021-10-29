@@ -8,3 +8,28 @@ def criando_as_pecas():
     return lista_pecas
 print(criando_as_pecas())
 print(len(criando_as_pecas()))
+
+def destribui_pecas(lista_pecas,num_participantes):
+    dicionario_mesa={}
+    lista_copia=lista_pecas.copy()
+    if num_participantes not in (2,3,4):
+        return "False"
+    elif num_participantes==2:
+        listabanco=[]
+        pessas_jogador_1=[]
+        pessas_jogador_2=[]
+        for k in range(0,7):
+            valor_j1=lista_pecas[k]
+            pessas_jogador_1.append(valor_j1)
+            lista_copia.remove(valor_j1)
+            valor_j2=lista_pecas[k+7]
+            pessas_jogador_2.append(valor_j2)
+            lista_copia.remove(valor_j2)
+        dicionario_mesa["jogador 1"]=pessas_jogador_1
+        dicionario_mesa["jogador 2"]=pessas_jogador_2
+        dicionario_mesa["banco"]=lista_copia
+        inicio_do_jogo =dicionario_mesa
+    elif num_participantes==3:
+        pessas_jogador_3=[]
+        pessas_jogador_1=[]
+        pessas_jogador_2=[]
