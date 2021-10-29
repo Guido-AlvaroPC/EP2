@@ -46,4 +46,18 @@ def destribui_pecas(lista_pecas,num_participantes):
         pessas_jogador_3=[]
         pessas_jogador_1=[]
         pessas_jogador_2=[]
-    for k 
+        for k in range(0,7):
+            valor_j3=lista_pecas[k+14]
+            pessas_jogador_3.append(valor_j3)
+            lista_copia.remove(valor_j3)
+            valor_j1=lista_pecas[k]
+            pessas_jogador_1.append(valor_j1)
+            lista_copia.remove(valor_j1)
+            valor_j2=lista_pecas[k+7]
+            pessas_jogador_2.append(valor_j2)
+            lista_copia.remove(valor_j2)
+        dicionario_mesa["jogador 1"]=pessas_jogador_1
+        dicionario_mesa["jogador 2"]=pessas_jogador_2
+        dicionario_mesa["jogador 3"]=pessas_jogador_3
+        dicionario_mesa["banco"]=lista_copia
+        inicio_do_jogo=dicionario_mesa
