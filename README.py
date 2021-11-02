@@ -253,3 +253,8 @@ def jogador_m_pontos(placar_jogadores):
     print(nome)
     return nome
 
+# função roda o jogo, recebe como parametros jogo,dicionario_banco,dicionario_ordem_jogadores
+# retorna jogo terminado, rezultado que vai ser adicionado em um arquivo
+# mostra interação com o usuario
+
+
