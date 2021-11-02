@@ -71,3 +71,11 @@ def destribui_pecas(lista_pecas,num_participantes):
     rd.shuffle(lista_inbaralhar_chaves)
     dicionario_ordem_jogadores={}
     for i2 in lista_inbaralhar_chaves:
+        dicionario_ordem_jogadores[i2]=dicionario_mesa[i]
+    if num_participantes==4:
+        dicionario_banco={"banco":[]}
+        jogo=[]
+        return [jogo,dicionario_banco,dicionario_ordem_jogadores]
+    else:
+        jogo=[]
+        return [jogo,dicionario_banco,dicionario_ordem_jogadores]
