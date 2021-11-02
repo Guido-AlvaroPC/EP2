@@ -206,3 +206,19 @@ def adicionando_pessas(tabuleiro,banco,pessas_podem,computador):
     elif len(pessas_podem)==0 and len(banco)==0:
         print("pulando a sua vez porque você não tem pessas validas e o banco esta vazil")
         return [tabuleiro,banco,pessas_podem,computador]
+    
+    # testando a função
+
+# tabuleiro,banco,pessa_restantes,computador=adicionando_pessas([(3,6)],[],[],0)
+# fim da função
+# função soma os valores das pessas de um jogador recebe como parametro um conjunto de pessas e retorna como rezultado um valor
+def soma_p_v(lista_pessas):
+    valor=0
+    if len(lista_pessas)==0:
+        return valor
+    for k in lista_pessas:
+        valor+=k[0]
+        valor+=k[1]
+    return valor
+# fim da função
+
