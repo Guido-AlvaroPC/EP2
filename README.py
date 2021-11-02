@@ -222,3 +222,34 @@ def soma_p_v(lista_pessas):
     return valor
 # fim da função
 
+# função atualiza a lista de pessas de um jogador resebe como parametros lista_inicial,lista_pociveis e lista_restantes
+def atualiza_patrimonho(lista_inicial,lista_pociveis,lista_resto):
+    for k in lista_pociveis:
+        lista_inicial.remove(k)
+    lista_inicial+=lista_resto
+    print(f"""sobraram as pessas:{lista_inicial}
+    sobra de pontos:{soma_p_v(lista_inicial)}""")
+    return lista_inicial
+    # fim da função
+# função recebe um dicionario com jogadores e seus pontos e retorna nome do jogador que tem menos pontos
+def jogador_m_pontos(placar_jogadores):
+    menor_num=4**10
+    nome=""
+    for k in placar_jogadores.keys():
+        somatorio=soma_p_v(placar_jogadores[k])
+        if somatorio<menor_num:
+            menor_num=somatorio
+            nome=k
+        elif menor_num==somatorio:
+            nome="inpate"
+    print("calculando o vencedor")
+    print('aguarde')
+    time.sleep(1)
+    print("3")
+    time.sleep(1)
+    print("2")
+    time.sleep(1)
+    print("1")
+    print(nome)
+    return nome
+
