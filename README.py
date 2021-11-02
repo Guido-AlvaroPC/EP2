@@ -85,4 +85,16 @@ def destribui_pecas(lista_pecas,num_participantes):
 # função verifica movimietos pocíveis
 # função recebe([tabuleiro],[lista de pessas],computador v=1 or0)
 # retorna: lista de pessas pociveis
+def pessas_pociveis(jogo,um_jogador_e_suas_pessas):
+    pessas_pociveis=[]
+    if len(jogo)==0:
+        return um_jogador_e_suas_pessas
+    else:
+        nipe_final=jogo[(len(jogo)-1)][1]
+        nipe_inicial=jogo[0][0]
+        for k in um_jogador_e_suas_pessas:
+            if nipe_final in k or nipe_inicial in k:
+                pessas_pociveis.append(k)
+        retorno=pessas_pociveis
+        return retorno
 
