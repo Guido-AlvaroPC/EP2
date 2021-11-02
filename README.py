@@ -257,4 +257,101 @@ def jogador_m_pontos(placar_jogadores):
 # retorna jogo terminado, rezultado que vai ser adicionado em um arquivo
 # mostra interação com o usuario
 
+def rodando_o_jogo(jogo,dicionario_banco,dicionario_ordem_jogadores):
+    fim_de_jogo=0
+    dicionario_usuario={}
+    somatorio_d_g={}
+    for k in dicionario_ordem_jogadores.keys():
+        if k=="jogador 1":
+            dicionario_usuario["humano"]=dicionario_ordem_jogadores[k]
+            somatorio_d_g["humano"]=soma_p_v(dicionario_ordem_jogadores[k])
+        else:
+            dicionario_usuario[k]=dicionario_ordem_jogadores[k]
+            somatorio_d_g[k]=soma_p_v(dicionario_ordem_jogadores[k])
+    while fim_de_jogo==0:
+        jogadas_foram_i=0
+        for k in dicionario_usuario.keys():
+            if k=="humano":
+                computador=0
+                print(" jogada do umano")
+            else:
+                computador=1
+                print(f"ves do jogador{k}")
+            # lista_de_pessas_validas=pessas_pociveis(jogo,dicionario_usuario[k])
+            parou_de_comprar=0
+            while parou_de_comprar==0:
+                lista_de_pessas_validas=pessas_pociveis(jogo,dicionario_usuario[k])
+                loop_tabuleiro,loop_banco,loop_pessas_restantes,computador=adicionando_pessas(jogo,dicionario_banco["banco"],lista_de_pessas_validas,computador)
+                if loop_banco==dicionario_banco["banco"] and loop_tabuleiro==jogo:
+                    parou_de_comprar+=3
+                    jogadas_foram_i+=1.2
+                elif jogo!=loop_tabuleiro:
+                    parou_de_comprar=3
+                    jogo.clear()
+                    jogo=loop_tabuleiro.copy()
+                    dicionario_usuario[k]=atualiza_patrimonho(dicionario_usuario[k],lista_de_pessas_validas,loop_pessas_restantes)
+                elif loop_banco!=dicionario_banco["banco"]:
+                    dicionario_banco["banco"]=loop_banco
+                    media=dicionario_usuario[k].copy()
+                    media+=loop_pessas_restantes
+                    dicionario_usuario[k]=media
+                print("pessas jogadas")
+                print("jogo")
+            somatorio_d_g[k]=soma_p_v(dicionario_usuario[k])
+            if somatorio_d_g[k]==0:
+                print(f"""fim do jogo
+                vitória do jogador:{k}""")
+                return k
+            elif jogadas_foram_i>=4:
+                vitoria=jogador_m_pontos(somatorio_d_g)
+                if vitoria=="inpate":
+                    print("impat")
+                    return "impat"
+                else:
+                    print(f"""fim do jogo
+                    vitória do jogador{vitoria}""")
+                    return vitoria
+                    # fim da função
+# teste macro
+         # teste macro
+# retorna lista de pessas
+
+lista_de_pessas=criando_as_pecas()
+# print(f""" lista de pessas :{lista_de_pessas}
+# tipo:{type(lista_de_pessas)}""")
+# jogo cria um tabuleiro com lista ou "False", dicionario_banco:cria um dicionario com chave:"banco e valor:pessas ou "False" e dicionario de nome do jogador e pessas como valores ou "False"
+# boas vindas
+print("bem vindo ao dominó")
+pode_jogar="False"
+while pode_jogar=="False":
+    numero_de_jogadores=int(input("com quantos jogadores quer jogar? maximo :4"))
+    jogo,dicionario_banco,dicionario_ordem_jogadores=destribui_pecas(lista_de_pessas,numero_de_jogadores)
+    pode_jogar=dicionario_ordem_jogadores
+print("começando o jogo em 4 segundos")
+time.sleep(2)
+print("começando o jogo em 2 segundos")
+time.sleep(2)
+print("o jogo ja foi iniciado")
+rodando_o_jogo(jogo,dicionario_banco,dicionario_ordem_jogadores)
+
+
+
+    # macro print com cada um dos valores da lista
+# print(f"""tabuleiro:{jogo}
+# tipo:{type(jogo)}
+ # banco:{dicionario_banco}
+ # tipo:{type(dicionario_banco)}
+ # jogadores e suas pessas:{dicionario_ordem_jogadores}
+ # tipo:{type(dicionario_ordem_jogadores)}""")
+ # função recebe 2 listas , jogo e lista de pessas de um jogador
+ # capiturando uma lista de pessas por jogador
+uma_lista_para_um_jogador=dicionario_ordem_jogadores["jogador 1"]
+jogo=[(7,7)]
+# antes de paçar para pessas são puciveis pociveis? precisa garantir que numero de jogadores e verdadeiro
+pessas__puciveis=pessas_pociveis(jogo,uma_lista_para_um_jogador)
+print(f"""pessas pociveis:{pessas__puciveis}
+tipo:{type(pessas__puciveis)}
+tamanho:{len(pessas__puciveis)}""")
+# fim do teste macro
+
 
