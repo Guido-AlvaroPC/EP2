@@ -79,3 +79,10 @@ def destribui_pecas(lista_pecas,num_participantes):
     else:
         jogo=[]
         return [jogo,dicionario_banco,dicionario_ordem_jogadores]
+# testando a função
+# print(destribui_pecas(criando_as_pecas(),4))
+# fim da função
+# função verifica movimietos pocíveis
+# função recebe([tabuleiro],[lista de pessas],computador v=1 or0)
+# retorna: lista de pessas pociveis
+
