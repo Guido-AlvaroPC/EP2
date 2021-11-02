@@ -102,3 +102,107 @@ v_g=pessas_pociveis([(8,4),(4,8)],destribui_pecas(criando_as_pecas(),4)[2]["joga
 # fim da função
 # criando função que adiciona a pessas no tabuleiro
 
+def adicionando_pessas(tabuleiro,banco,pessas_podem,computador):
+    if len(pessas_podem)>0:
+        print(f"suas pessas:{pessas_podem}")
+        # time.sleep(2)
+        melhor_pessa=[]
+        numero_de_pontos=0
+        for k in pessas_podem:
+            soma=k[1]+k[0]
+            if soma>numero_de_pontos:
+                numero_de_pontos=soma
+                melhor_pessa.append(k)
+        m_pessa=melhor_pessa[len(melhor_pessa)-1]
+        print(f"melhor pessa:{m_pessa}")
+        if computador==1 and len(tabuleiro)==0:
+            tabuleiro.append(m_pessa)
+            print(f"pessa adicionada:{m_pessa}")
+            pessas_podem.remove(m_pessa)
+        elif len(tabuleiro)!=0 and computador==1:
+            nipe_final_tab=tabuleiro[len(tabuleiro)-1][1]
+            nipe_inicial_tab=tabuleiro[0][0]
+            if nipe_final_tab==m_pessa[0]:
+                tabuleiro.append(m_pessa)
+                print(f" pessa adicionada:{m_pessa}")
+                pessas_podem.remove(m_pessa)
+            elif nipe_inicial_tab==m_pessa[1]:
+                pessa_no_inicio=tabuleiro.copy()
+                tabuleiro.clear()
+                tabuleiro.append(m_pessa)
+                tabuleiro=tabuleiro+pessa_no_inicio
+                pessas_podem.remove(m_pessa)
+                print(f" pessa adicionada:{m_pessa}")
+            elif nipe_final_tab==m_pessa[1]:
+                pessa_env=(m_pessa[1],m_pessa[0])
+                tabuleiro.append(pessa_env)
+                pessas_podem.remove(m_pessa)
+                print(f"pessa adicionada:{pessa_env}")
+            else:
+                pessas_podem.remove(m_pessa)
+                pessa_env=(m_pessa[1],m_pessa[0])
+                print(f" pessa adicionada:{pessa_env}")
+                pessa_no_inicio=tabuleiro.copy()
+                tabuleiro.clear()
+                tabuleiro.append(pessa_env)
+                tabuleiro=tabuleiro+pessa_no_inicio
+        elif computador==0 and len(tabuleiro)==0:
+            altenticador=0
+            while altenticador==0:
+                nipe_1=int(input("digite um dos valores da pessa que quer escolher"))
+                nip_2=int(input("digite o outro valor da pessa"))
+                pessa_montada=(nipe_1,nip_2)
+                pessa_montada_inv=(nip_2,nipe_1)
+                if pessa_montada in pessas_podem:
+                    print("pessa adicionada")
+                    pessas_podem.remove(pessa_montada)
+                    tabuleiro.append(pessa_montada)
+                    altenticador=1
+                elif pessa_montada_inv in pessas_podem:
+                    pessas_podem.remove(pessa_montada_inv)
+                    tabuleiro.append(pessa_montada_inv)
+                    altenticador=1
+                    print("pessa adicionada ao tabuleiro")
+                else:
+                    print("pessa inesistente")
+        elif computador==0 and len(tabuleiro)!=0:
+            altenticador=0
+            while altenticador==0:
+                nipe_1=int(input("digite um dos valores da pessa que quer escolher"))
+                nip_2=int(input("digite o outro valor da pessa"))
+                pessa_montada=(nipe_1,nip_2)
+                pessa_montada_inv=(nip_2,nipe_1)
+                if pessa_montada in pessas_podem:
+                    altenticador=1
+                    print("pessa adicionada")
+                    pessas_podem.remove(pessa_montada)
+                    if pessa_montada[0]==tabuleiro[len(tabuleiro)-1][1]:
+                        tabuleiro.append(pessa_montada)
+                    else:
+                        inicio_do_jogo=tabuleiro.copy()
+                        tabuleiro.clear()
+                        tabuleiro.append(pessa_montada)
+                        tabuleiro+=inicio_do_jogo
+                elif pessa_montada_inv in pessas_podem:
+                    altenticador=1
+                    print("pessa adicionada")
+                    pessas_podem.remove(pessa_montada_inv)
+                    if pessa_montada_inv[0]==tabuleiro[len(tabuleiro)-1][1]:
+                        tabuleiro.append(pessa_montada_inv)
+                    else:
+                        inicio_do_jogo=tabuleiro.copy()
+                        tabuleiro.clear()
+                        tabuleiro.append(pessa_montada_inv)
+                        tabuleiro+=inicio_do_jogo
+                else:
+                    print("pessa invalida")
+        return [tabuleiro,banco,pessas_podem,computador]
+    elif len(pessas_podem)==0 and len(banco)>0:
+        uma_pessa_adicionada=banco[0]
+        pessas_podem.append(uma_pessa_adicionada)
+        banco.remove(uma_pessa_adicionada)
+        print(f"o jogador comprou a pessa:{uma_pessa_adicionada} do banco")
+        return [tabuleiro,banco,pessas_podem,computador]
+    elif len(pessas_podem)==0 and len(banco)==0:
+        print("pulando a sua vez porque você não tem pessas validas e o banco esta vazil")
+        return [tabuleiro,banco,pessas_podem,computador]
