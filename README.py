@@ -61,3 +61,13 @@ def destribui_pecas(lista_pecas,num_participantes):
         dicionario_mesa["jogador 3"]=pessas_jogador_3
         dicionario_mesa["banco"]=lista_copia
         inicio_do_jogo=dicionario_mesa
+                inicio_do_jogo= dicionario_mesa
+    if "banco" in dicionario_mesa.keys()    :
+        dicionario_banco={"banco":dicionario_mesa["banco"]}
+        dicionario_mesa.popitem()
+    lista_inbaralhar_chaves=[]
+    for i in dicionario_mesa.keys():
+        lista_inbaralhar_chaves.append(i)
+    rd.shuffle(lista_inbaralhar_chaves)
+    dicionario_ordem_jogadores={}
+    for i2 in lista_inbaralhar_chaves:
