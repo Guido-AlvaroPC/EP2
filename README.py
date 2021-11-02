@@ -97,4 +97,8 @@ def pessas_pociveis(jogo,um_jogador_e_suas_pessas):
                 pessas_pociveis.append(k)
         retorno=pessas_pociveis
         return retorno
+    # testando o codigo
+v_g=pessas_pociveis([(8,4),(4,8)],destribui_pecas(criando_as_pecas(),4)[2]["jogador 1"])
+# fim da função
+# criando função que adiciona a pessas no tabuleiro
 
