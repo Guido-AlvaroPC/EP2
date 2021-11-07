@@ -77,7 +77,7 @@ def destribui_pecas(lista_pecas,num_participantes):
         dicionario_mesa["jogador 4"]=lista_copia
         dicionario_mesa["banco"]=lista_copia
         inicio_do_jogo=dicionario_mesa
-                inicio_do_jogo=dicionario_mesa
+        inicio_do_jogo=dicionario_mesa
     if "banco" in dicionario_mesa.keys():
         dicionario_banco={"banco":dicionario_mesa["banco"]}
         dicionario_mesa.popitem()
