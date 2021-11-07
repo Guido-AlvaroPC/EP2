@@ -1,6 +1,6 @@
 # EP2
-Guido Alvaro e João Victor
-
+#Guido Alvaro e João Victor
+import os
 import random as rd
 import random as rd
 import time
